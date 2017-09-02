@@ -1,6 +1,5 @@
 package com.github.johnnysc.yandextranslator.presenter;
 
-import com.github.johnnysc.yandextranslator.RestManager;
 import com.github.johnnysc.yandextranslator.model.Model;
 import com.github.johnnysc.yandextranslator.view.IView;
 
@@ -13,9 +12,10 @@ public class PresenterImpl implements Presenter {
     private final IView mView;
     private final Model mModel;
 
-    public PresenterImpl(IView view) {
+    public PresenterImpl(IView view, Model model) {
         mView = view;
-        mModel = new Model(this, new RestManager());
+        mModel = model;
+        mModel.setPresenter(this);
     }
 
     @Override

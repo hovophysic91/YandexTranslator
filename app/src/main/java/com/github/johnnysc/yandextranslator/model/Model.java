@@ -1,8 +1,10 @@
 package com.github.johnnysc.yandextranslator.model;
 
-import com.github.johnnysc.yandextranslator.RestManager;
 import com.github.johnnysc.yandextranslator.TranslatedText;
+import com.github.johnnysc.yandextranslator.TranslatorService;
 import com.github.johnnysc.yandextranslator.presenter.Presenter;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,18 +21,22 @@ public class Model {
     private static final String FORMAT = "plain";
     private static final String OPTIONS = "1";
 
-    private final RestManager mRestManager;
-    private final Presenter mPresenter;
+    private final TranslatorService mService;
+    private Presenter mPresenter;
 
-    public Model(Presenter presenter, RestManager restManager) {
+    @Inject
+    public Model(TranslatorService service) {
+        mService = service;
+    }
+
+    public void setPresenter(Presenter presenter) {
         mPresenter = presenter;
-        mRestManager = restManager;
     }
 
     public void translateText(String sourceText) {
         mPresenter.showProgress();
 
-        Call<TranslatedText> textCall = mRestManager.getService().getText(KEY, sourceText, LANG, FORMAT, OPTIONS);
+        Call<TranslatedText> textCall = mService.getText(KEY, sourceText, LANG, FORMAT, OPTIONS);
         textCall.enqueue(new Callback<TranslatedText>() {
             @Override
             public void onResponse(Call<TranslatedText> call, Response<TranslatedText> response) {
