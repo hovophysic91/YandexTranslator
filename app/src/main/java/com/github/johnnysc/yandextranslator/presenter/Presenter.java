@@ -6,5 +6,13 @@ package com.github.johnnysc.yandextranslator.presenter;
 
 public interface Presenter {
 
-    void getTranslatedText(String sourceText);
+    void showProgress();
+
+    void hideProgress();
+
+    void showError();
+
+    void showTranslatedText(String translatedText);
+
+    void translateText(String sourceText);
 }

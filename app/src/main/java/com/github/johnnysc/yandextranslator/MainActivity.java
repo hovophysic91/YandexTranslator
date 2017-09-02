@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.github.johnnysc.yandextranslator.presenter.PresenterImpl;
 import com.github.johnnysc.yandextranslator.view.IView;
 
-public class MainActivity extends AppCompatActivity implements IView, View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements IView, View.OnClickListener {
 
     private ProgressBar mProgressBar;
     private EditText mEditText;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
     public void onClick(View v) {
         String text = mEditText.getText().toString();
         if (text.length() > 0) {
-            mPresenter.getTranslatedText(text);
+            mPresenter.translateText(text);
         }
     }
 
