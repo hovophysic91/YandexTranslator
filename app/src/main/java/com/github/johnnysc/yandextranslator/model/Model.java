@@ -24,12 +24,8 @@ public class Model {
     private final TranslatorService mService;
     private Presenter mPresenter;
 
-    @Inject
-    public Model(TranslatorService service) {
+    public Model(TranslatorService service, Presenter presenter) {
         mService = service;
-    }
-
-    public void setPresenter(Presenter presenter) {
         mPresenter = presenter;
     }
 

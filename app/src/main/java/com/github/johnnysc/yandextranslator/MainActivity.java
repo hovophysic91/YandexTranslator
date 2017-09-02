@@ -18,9 +18,7 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity implements IView, View.OnClickListener {
 
     @Inject
-    Model mModel;
-
-    private PresenterImpl mPresenter;
+    PresenterImpl mPresenter;
 
     private ProgressBar mProgressBar;
     private EditText mEditText;
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
                 .getNetComponent()
                 .inject(this);
         initUI();
-        mPresenter = new PresenterImpl(this, mModel);
+        mPresenter.setView(this);
     }
 
     @Override
