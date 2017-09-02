@@ -1,6 +1,6 @@
 package com.github.johnnysc.yandextranslator.dagger;
 
-import com.github.johnnysc.yandextranslator.MainActivity;
+import com.github.johnnysc.yandextranslator.model.Model;
 
 import javax.inject.Singleton;
 
@@ -13,5 +13,5 @@ import dagger.Component;
 @Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
 
-    void inject(MainActivity activity);
+    void inject(Model model);
 }

@@ -1,6 +1,9 @@
 package com.github.johnnysc.yandextranslator.model;
 
+import android.app.Application;
+
 import com.github.johnnysc.yandextranslator.TranslatedText;
+import com.github.johnnysc.yandextranslator.TranslatorApp;
 import com.github.johnnysc.yandextranslator.TranslatorService;
 import com.github.johnnysc.yandextranslator.presenter.Presenter;
 
@@ -21,11 +24,20 @@ public class Model {
     private static final String FORMAT = "plain";
     private static final String OPTIONS = "1";
 
-    private final TranslatorService mService;
     private Presenter mPresenter;
 
-    public Model(TranslatorService service, Presenter presenter) {
-        mService = service;
+    @Inject
+    TranslatorService mService;
+
+    @Inject
+    public Model(Application application) {
+        ((TranslatorApp) application)
+                .getNetComponent()
+                .inject(this);
+    }
+
+    public Model(Application application, Presenter presenter) {
+        this(application);
         mPresenter = presenter;
     }
 

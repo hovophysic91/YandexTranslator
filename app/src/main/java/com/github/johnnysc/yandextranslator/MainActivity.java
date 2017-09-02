@@ -9,16 +9,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.johnnysc.yandextranslator.model.Model;
 import com.github.johnnysc.yandextranslator.presenter.PresenterImpl;
 import com.github.johnnysc.yandextranslator.view.IView;
 
-import javax.inject.Inject;
-
 public class MainActivity extends AppCompatActivity implements IView, View.OnClickListener {
 
-    @Inject
-    PresenterImpl mPresenter;
+    private PresenterImpl mPresenter;
 
     private ProgressBar mProgressBar;
     private EditText mEditText;
@@ -29,11 +25,8 @@ public class MainActivity extends AppCompatActivity implements IView, View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((TranslatorApp) getApplication())
-                .getNetComponent()
-                .inject(this);
         initUI();
-        mPresenter.setView(this);
+        mPresenter = new PresenterImpl(this, getApplication());
     }
 
     @Override

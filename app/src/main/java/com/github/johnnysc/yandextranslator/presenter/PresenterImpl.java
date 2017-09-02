@@ -1,10 +1,9 @@
 package com.github.johnnysc.yandextranslator.presenter;
 
-import com.github.johnnysc.yandextranslator.TranslatorService;
+import android.app.Application;
+
 import com.github.johnnysc.yandextranslator.model.Model;
 import com.github.johnnysc.yandextranslator.view.IView;
-
-import javax.inject.Inject;
 
 /**
  * @author Asatryan on 02.09.17.
@@ -12,16 +11,12 @@ import javax.inject.Inject;
 
 public class PresenterImpl implements Presenter {
 
-    private IView mView;
-    private Model mModel;
+    private final IView mView;
+    private final Model mModel;
 
-    @Inject
-    public PresenterImpl(TranslatorService service) {
-        mModel = new Model(service, this);
-    }
-
-    public void setView(IView view) {
+    public PresenterImpl(IView view, Application application) {
         mView = view;
+        mModel = new Model(application, this);
     }
 
     @Override
